@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me, Patel? 💍</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div id="proposal-section">
+            <h1 class="heading">Will You Marry Me, Patel? 💖</h1>
+            <p class="subtext">Will you make me a Patel too? 🥺💍</p>
+            
+            <div id="bunny-display" class="bunny">🐰</div>
+            <div id="expression-emoji" class="expression">😊</div>
+
+            <div class="btn-group">
+                <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
+                <button id="noBtn" onmouseover="moveNo()" onclick="handleNo()">No 😢</button>
+            </div>
+        </div>
+
+        <div id="celebration-section" class="hidden">
+            <h1 class="heading">I knew you would say YES! 💖</h1>
+            <p class="subtext">You made me the happiest person ever 💕</p>
+            <div class="couple-bunny">🐰❤️🐰</div>
+            <div class="kiss-container" id="kiss-container"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
