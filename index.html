@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Will You Marry Me, Patel? 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pink-bg: #ffe5ec;
+            --dark-pink: #ff4d6d;
+            --white-glass: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: var(--pink-bg);
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; overflow: hidden; text-align: center;
+        }
+
+        /* Moving Gradient Background */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #ffdde1, #ee9ca7, #ffafbd);
+            z-index: -2;
+            animation: moveBg 10s infinite alternate;
+        }
+
+        @keyframes moveBg {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(20deg); }
+        }
+
+        .container {
+            background: var(--white-glass);
+            backdrop-filter: blur(15px);
+            padding: 30px; border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            max-width: 85%; z-index: 10;
+            border: 2px solid white;
+        }
+
+        h1 { 
+            font-family: 'Dancing Script', cursive; 
+            color: var(--dark-pink); font-size: 2.5rem; margin-bottom: 10px;
+        }
+
+        /* Bunny Display */
+        .bunny-card {
+            width: 180px; height: 180px; margin: 20px auto;
+            background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .bunny-img { width: 140px; height: auto; }
+
+        .buttons {
+            margin-top: 30px; display: flex; justify-content: center;
+            gap: 20px; min-height: 80px; position: relative;
+        }
+
+        button {
+            padding: 15px 35px; font-size: 1.2rem; border: none;
+            border-radius: 50px; cursor: pointer; font-weight: bold;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn { background: var(--dark-pink); color: white; z-index: 100; }
+        #noBtn { background: #f8f9fa; color: var(--dark-pink); }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed; font-size: 20px; color: var(--dark-pink);
+            z-index: 1; pointer-events: none;
+            animation: float 4s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(105vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .hidden { display: none !important; }
+
+        #celebration { animation: popIn 0.6s ease-out; }
+        @keyframes popIn { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <audio id="music" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/05/Serenade-to-Spring.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="proposal" class="container">
+        <h1>Will You Marry Me, Patel? 💖</h1>
+        <p style="color: #666;">Waiting for your "Yes" forever... 🥺💍</p>
+        
+        <div class="bunny-card">
+            <img id="bunny" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJqam8ycGZqbm94ZWZ6Z3J6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v3uQ6SStH4i0O6vA4U/giphy.gif" class="bunny-img">
+        </div>
+
+        <div class="buttons">
+            <button id="yesBtn">Yes! 💕</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+    </div>
+
+    <div id="celebration" class="container hidden">
+        <h1>OMGGG! YESSSS! 💖</h1>
+        <p>You've made me the happiest person ever! 😘</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJqam8ycGZqbm94ZWZ6Z3J6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26BRv0ThflsHCqfJA/giphy.gif" width="220">
+        <div style="font-size: 3rem; margin-top: 15px;">💋💌✨</div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const bunny = document.getElementById('bunny');
+        const music = document.getElementById('music');
+        let clickCount = 0;
+
+        // Using high-quality GIPHY links for stability
+        const gifs = {
+            sad: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJqam8ycGZqbm94ZWZ6Z3J6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/OPU6wUKARA8AU/giphy.gif",
+            crying: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJqam8ycGZqbm94ZWZ6Z3J6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/X3Kb80U8wVf56/giphy.gif",
+            playful: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJqam8ycGZqbm94ZWZ6Z3J6ZzZ6ZzZ6ZzZ6ZzZ6ZzZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/MDJ9IbxxvDUQM/giphy.gif"
+        };
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHeart, 500);
+
+        noBtn.addEventListener('click', () => {
+            clickCount++;
+            music.play().catch(() => {}); // Play music on interaction
+
+            if (clickCount === 1) {
+                noBtn.innerText = "Are you sure? 🥺";
+                bunny.src = gifs.sad;
+            } else if (clickCount === 2) {
+                noBtn.innerText = "Soch lo ek baar... 😭";
+                bunny.src = gifs.crying;
+            } else {
+                noBtn.innerText = "Catch me! 😜";
+                bunny.src = gifs.playful;
+                noBtn.style.position = 'fixed';
+                const x = Math.random() * (window.innerWidth - 120);
+                const y = Math.random() * (window.innerHeight - 50);
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+            }
+            // Yes button grows dramatically!
+            yesBtn.style.transform = `scale(${1 + clickCount * 0.4})`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            if(clickCount < 1) {
+                alert("Pehle 'No' click karke toh dekho! 😂");
+            } else {
+                document.getElementById('proposal').classList.add('hidden');
+                document.getElementById('celebration').classList.remove('hidden');
+                setInterval(createHeart, 100);
+            }
+        });
+    </script>
+</body>
+</html>
